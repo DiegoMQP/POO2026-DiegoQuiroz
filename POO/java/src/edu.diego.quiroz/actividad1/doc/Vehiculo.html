@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehiculo - Documentación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 { color: #cc0000; border-bottom: 3px solid #cc0000; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; }
+        .content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .method, .field {
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+            border-left: 4px solid #cc0000;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Volver al índice</a>
+    
+    <div class="content">
+        <h1>Clase Vehiculo</h1>
+        <p><strong>Paquete:</strong> edu.diego.quiroz.actividad1.process</p>
+        <p><strong>Tipo:</strong> Clase abstracta</p>
+        
+        <h2>Descripción</h2>
+        <p>Clase abstracta que representa un vehículo genérico en el sistema. Define los atributos y métodos comunes para todos los tipos de vehículos.</p>
+        
+        <h2>Atributos</h2>
+        <div class="field">
+            <code>protected String marca</code> - Marca del vehículo
+        </div>
+        <div class="field">
+            <code>protected String modelo</code> - Modelo del vehículo
+        </div>
+        <div class="field">
+            <code>protected int año</code> - Año de fabricación
+        </div>
+        <div class="field">
+            <code>protected String color</code> - Color del vehículo
+        </div>
+        <div class="field">
+            <code>protected String motor</code> - Tipo de motor
+        </div>
+        <div class="field">
+            <code>protected String transmision</code> - Tipo de transmisión
+        </div>
+        <div class="field">
+            <code>protected String combustible</code> - Tipo de combustible
+        </div>
+        <div class="field">
+            <code>protected int pasajeros</code> - Capacidad de pasajeros
+        </div>
+        <div class="field">
+            <code>protected double precio</code> - Precio del vehículo
+        </div>
+        <div class="field">
+            <code>protected String tipo</code> - Tipo de vehículo (Nuevo/Seminuevo)
+        </div>
+        <div class="field">
+            <code>protected String urlImagen</code> - URL de la imagen del vehículo
+        </div>
+        
+        <h2>Métodos Principales</h2>
+        <div class="method">
+            <code>public String getMarca()</code><br>
+            Retorna la marca del vehículo.
+        </div>
+        <div class="method">
+            <code>public String getModelo()</code><br>
+            Retorna el modelo del vehículo.
+        </div>
+        <div class="method">
+            <code>public double getPrecio()</code><br>
+            Retorna el precio del vehículo.
+        </div>
+        <div class="method">
+            <code>public String getTipo()</code><br>
+            Retorna el tipo de vehículo.
+        </div>
+        <div class="method">
+            <code>public abstract String getDescripcionCompleta()</code><br>
+            Método abstracto que debe ser implementado por las subclases para obtener una descripción completa del vehículo.
+        </div>
+        
+        <h2>Clases Derivadas</h2>
+        <ul>
+            <li><a href="VehiculoNuevo.html">VehiculoNuevo</a></li>
+            <li><a href="VehiculoSeminuevo.html">VehiculoSeminuevo</a></li>
+        </ul>
+    </div>
+</body>
+</html>

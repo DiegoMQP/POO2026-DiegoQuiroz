@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentación - Sistema de Venta de Vehículos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #cc0000;
+            border-bottom: 3px solid #cc0000;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #333;
+            margin-top: 30px;
+        }
+        .package {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .class-list {
+            list-style: none;
+            padding: 0;
+        }
+        .class-list li {
+            padding: 10px;
+            margin: 5px 0;
+            background-color: #f9f9f9;
+            border-left: 4px solid #cc0000;
+        }
+        .class-list a {
+            text-decoration: none;
+            color: #0066cc;
+            font-weight: bold;
+        }
+        .class-list a:hover {
+            text-decoration: underline;
+        }
+        .description {
+            color: #666;
+            margin-top: 5px;
+        }
+        .info {
+            background-color: #e7f3fe;
+            padding: 15px;
+            border-left: 6px solid #2196F3;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sistema de Venta de Vehículos - TecmiNuevos</h1>
+    
+    <div class="info">
+        <strong>Proyecto:</strong> Actividad 1 - POO<br>
+        <strong>Autor:</strong> Diego Quiroz<br>
+        <strong>Versión:</strong> 1.0.0<br>
+        <strong>Tecnologías:</strong> JavaFX 17, iText 5, SQLite
+    </div>
+
+    <h2>Descripción del Sistema</h2>
+    <p>Sistema de gestión y venta de vehículos desarrollado con JavaFX. Permite visualizar catálogos de vehículos nuevos y seminuevos, gestionar ventas, seleccionar extras y generar tickets en PDF.</p>
+
+    <div class="package">
+        <h2>Paquete: actividad1.process</h2>
+        <p class="description">Contiene la lógica de negocio y procesamiento del sistema.</p>
+        <ul class="class-list">
+            <li>
+                <a href="App.html">App</a>
+                <div class="description">Clase principal de la aplicación. Punto de entrada JavaFX.</div>
+            </li>
+            <li>
+                <a href="BaseDatos.html">BaseDatos</a>
+                <div class="description">Gestiona la conexión y operaciones con la base de datos SQLite.</div>
+            </li>
+            <li>
+                <a href="ControladorVentas.html">ControladorVentas</a>
+                <div class="description">Controla el proceso de ventas y gestión del carrito de compras.</div>
+            </li>
+            <li>
+                <a href="Extra.html">Extra</a>
+                <div class="description">Representa un extra o accesorio adicional para vehículos.</div>
+            </li>
+            <li>
+                <a href="GeneradorPDF.html">GeneradorPDF</a>
+                <div class="description">Genera tickets de venta en formato PDF.</div>
+            </li>
+            <li>
+                <a href="GestorIdiomas.html">GestorIdiomas</a>
+                <div class="description">Gestiona la internacionalización del sistema (ES/EN).</div>
+            </li>
+            <li>
+                <a href="RepositorioVehiculos.html">RepositorioVehiculos</a>
+                <div class="description">Repositorio de vehículos disponibles en el sistema.</div>
+            </li>
+            <li>
+                <a href="Ticket.html">Ticket</a>
+                <div class="description">Representa un ticket de venta con todos sus detalles.</div>
+            </li>
+            <li>
+                <a href="Vehiculo.html">Vehiculo</a>
+                <div class="description">Clase abstracta que representa un vehículo genérico.</div>
+            </li>
+            <li>
+                <a href="VehiculoNuevo.html">VehiculoNuevo</a>
+                <div class="description">Representa un vehículo nuevo con garantía.</div>
+            </li>
+            <li>
+                <a href="VehiculoSeminuevo.html">VehiculoSeminuevo</a>
+                <div class="description">Representa un vehículo seminuevo con historial.</div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="package">
+        <h2>Paquete: actividad1.ui</h2>
+        <p class="description">Contiene las interfaces gráficas del usuario.</p>
+        <ul class="class-list">
+            <li>
+                <a href="VentanaPrincipal.html">VentanaPrincipal</a>
+                <div class="description">Ventana principal del sistema con catálogo y carrito.</div>
+            </li>
+            <li>
+                <a href="DialogoExtras.html">DialogoExtras</a>
+                <div class="description">Diálogo para seleccionar extras y accesorios.</div>
+            </li>
+            <li>
+                <a href="DialogoSeleccionIdioma.html">DialogoSeleccionIdioma</a>
+                <div class="description">Diálogo inicial para seleccionar el idioma de la aplicación.</div>
+            </li>
+        </ul>
+    </div>
+
+    <h2>Características Principales</h2>
+    <ul>
+        <li>Catálogo visual de vehículos nuevos y seminuevos</li>
+        <li>Sistema de carrito de compras</li>
+        <li>Selección de extras y accesorios</li>
+        <li>Generación de tickets en PDF</li>
+        <li>Soporte multiidioma (Español e Inglés)</li>
+        <li>Persistencia de datos con SQLite</li>
+    </ul>
+</body>
+</html>
