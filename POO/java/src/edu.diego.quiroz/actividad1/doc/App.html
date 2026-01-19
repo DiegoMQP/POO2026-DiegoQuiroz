@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App - Documentación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        h1 { color: #cc0000; border-bottom: 3px solid #cc0000; padding-bottom: 10px; }
+        h2 { color: #333; margin-top: 30px; }
+        .content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .method {
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+            border-left: 4px solid #cc0000;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #0066cc;
+            text-decoration: none;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="back-link">← Volver al índice</a>
+    
+    <div class="content">
+        <h1>Clase App</h1>
+        <p><strong>Paquete:</strong> edu.diego.quiroz.actividad1.process</p>
+        <p><strong>Hereda de:</strong> javafx.application.Application</p>
+        
+        <h2>Descripción</h2>
+        <p>Clase principal de la aplicación TecmiNuevos. Punto de entrada de la aplicación JavaFX. Se encarga de inicializar el sistema y mostrar la interfaz de usuario.</p>
+        
+        <h2>Métodos</h2>
+        <div class="method">
+            <code>public void start(Stage stage)</code><br>
+            Método principal de inicio de JavaFX. Muestra primero el diálogo de selección de idioma y luego la ventana principal.
+            <br><br>
+            <strong>Parámetros:</strong>
+            <ul>
+                <li><code>stage</code> - Escenario principal de JavaFX</li>
+            </ul>
+        </div>
+        <div class="method">
+            <code>public static void main(String[] args)</code><br>
+            Punto de entrada de la aplicación. Lanza la aplicación JavaFX.
+            <br><br>
+            <strong>Parámetros:</strong>
+            <ul>
+                <li><code>args</code> - Argumentos de línea de comandos</li>
+            </ul>
+        </div>
+        
+        <h2>Flujo de Ejecución</h2>
+        <ol>
+            <li>La aplicación inicia mostrando el diálogo de selección de idioma</li>
+            <li>Si el usuario selecciona un idioma, se carga el gestor de idiomas</li>
+            <li>Se muestra la ventana principal con el catálogo de vehículos</li>
+            <li>Si el usuario cierra el diálogo sin seleccionar, la aplicación se cierra</li>
+        </ol>
+    </div>
+</body>
+</html>
