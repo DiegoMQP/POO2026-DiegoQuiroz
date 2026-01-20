@@ -1,15 +1,14 @@
-package edu.diego.quiroz.actividad2.ui;
+package edu.diego.quiroz.act2.ui;
 
-import edu.diego.quiroz.actividad2.process.*;
+import edu.diego.quiroz.act2.process.*;
 import java.util.Scanner;
 
 /**
- * Clase principal de la calculadora aritmética
- * Interfaz interactiva para usar la calculadora
+ * Interfaz de línea de comandos para la calculadora aritmética
  */
 public class CLI {
     
-    public static void main(String[] args) {
+    public static void iniciar() {
         Scanner scanner = new Scanner(System.in);
         boolean continuar = true;
         

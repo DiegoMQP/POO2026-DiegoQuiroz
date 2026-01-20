@@ -1,4 +1,4 @@
-package edu.diego.quiroz.actividad2.process;
+package edu.diego.quiroz.act2.process;
 
 /**
  * Clase que implementa la operación de resta
@@ -13,7 +13,7 @@ public class Resta implements Operacion {
     /**
      * Método estático para uso directo
      */
-    public static double realizarOperacion(int operando1, int operando2) {
+    public static int realizarOperacion(int operando1, int operando2) {
         return operando1 - operando2;
     }
 }

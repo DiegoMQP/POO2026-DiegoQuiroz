@@ -1,4 +1,4 @@
-package edu.diego.quiroz.actividad2.process;
+package edu.diego.quiroz.act2.process;
 
 /**
  * Clase que implementa la operación de módulo (residuo)
@@ -41,29 +41,7 @@ public class Modulo implements Operacion {
      * Método estático para uso directo con enteros
      */
     public static int realizarOperacion(int operando1, int operando2) {
-        if (operando2 == 0) {
-            throw new ArithmeticException("Módulo por cero no permitido");
-        }
-        
-        boolean operando1Negativo = operando1 < 0;
-        if (operando1Negativo) {
-            operando1 = 0 - operando1;
-        }
-        
-        int divisor = operando2;
-        if (divisor < 0) {
-            divisor = 0 - divisor;
-        }
-        
-        int residuo = operando1;
-        while (residuo >= divisor) {
-            residuo = residuo - divisor;
-        }
-        
-        if (operando1Negativo) {
-            residuo = 0 - residuo;
-        }
-        
-        return residuo;
+        Modulo modulo = new Modulo();
+        return (int) modulo.realizarOperacion((double)operando1, (double)operando2);
     }
 }

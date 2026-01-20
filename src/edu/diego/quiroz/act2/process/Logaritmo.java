@@ -1,4 +1,4 @@
-package edu.diego.quiroz.actividad2.process;
+package edu.diego.quiroz.act2.process;
 
 /**
  * Clase que implementa la operación de logaritmo
@@ -21,15 +21,15 @@ public class Logaritmo implements Operacion {
             return 0;
         }
         
-        // Contar cuántas veces hay que multiplicar la base para llegar al operando
+        // Contar cuántas veces hay que dividir el operando por la base para llegar a 1
         double resultado = 0;
-        double valor = 1;
+        double valor = operando;
+        double epsilon = 0.0000001;
         
-        // Para base > 1
+        // Para base > 1: dividir hasta llegar a 1
         if (base > 1) {
-            // Multiplicar base repetidamente hasta alcanzar o superar el operando
-            while (valor < operando) {
-                valor = multiplicar(valor, base);
+            while (valor > 1 + epsilon) {
+                valor = new Division().realizarOperacion(valor, base);
                 resultado = resultado + 1;
                 
                 // Evitar bucle infinito
@@ -37,18 +37,11 @@ public class Logaritmo implements Operacion {
                     break;
                 }
             }
-            
-            // Si nos pasamos, restar 1
-            if (valor > operando) {
-                resultado = resultado - 1;
-            }
         } 
-        // Para base < 1
+        // Para base < 1: multiplicar (o dividir por 1/base) hasta llegar a 1
         else {
-            // Multiplicar base repetidamente hasta alcanzar o bajar del operando
-            valor = operando;
-            while (valor > 1) {
-                valor = multiplicar(valor, base);
+            while (valor < 1 - epsilon) {
+                valor = new Division().realizarOperacion(valor, base);
                 resultado = resultado + 1;
                 
                 if (resultado > 10000) {
@@ -56,61 +49,6 @@ public class Logaritmo implements Operacion {
                 }
             }
             resultado = 0 - resultado; // Resultado negativo para base < 1
-        }
-        
-        return resultado;
-    }
-    
-    /**
-     * Método auxiliar para multiplicar usando suma repetida
-     */
-    private double multiplicar(double a, double b) {
-        if (a == 0 || b == 0) {
-            return 0;
-        }
-        
-        boolean negativo = false;
-        if (a < 0) {
-            a = 0 - a;
-            negativo = !negativo;
-        }
-        if (b < 0) {
-            b = 0 - b;
-            negativo = !negativo;
-        }
-        
-        double resultado = 0;
-        int veces = (int) b;
-        
-        // Suma repetida para la parte entera
-        for (int i = 0; i < veces; i = i + 1) {
-            resultado = resultado + a;
-        }
-        
-        // Aproximación para la parte decimal
-        double decimal = b - veces;
-        if (decimal > 0.001) {
-            // Convertir decimal a fracción sobre 100
-            int centesimas = (int)(decimal + decimal + decimal + decimal + decimal +
-                                  decimal + decimal + decimal + decimal + decimal); // x10
-            centesimas = (int)(centesimas + centesimas + centesimas + centesimas + centesimas +
-                              centesimas + centesimas + centesimas + centesimas + centesimas); // x10 again
-            
-            double parteDecimal = 0;
-            for (int i = 0; i < centesimas; i = i + 1) {
-                parteDecimal = parteDecimal + a;
-            }
-            
-            // Dividir entre 100 (resta repetida)
-            for (int i = 0; i < 100; i = i + 1) {
-                parteDecimal = parteDecimal - (a - a); // Simplificado
-            }
-            
-            resultado = resultado + (decimal - decimal); // Simplificado por complejidad
-        }
-        
-        if (negativo) {
-            resultado = 0 - resultado;
         }
         
         return resultado;

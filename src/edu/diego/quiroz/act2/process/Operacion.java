@@ -1,4 +1,4 @@
-package edu.diego.quiroz.actividad2.process;
+package edu.diego.quiroz.act2.process;
 
 /**
  * Interfaz que define el contrato para las operaciones aritméticas
