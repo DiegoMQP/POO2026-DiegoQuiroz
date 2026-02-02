@@ -71,6 +71,11 @@ class StringUtilsTest {
         assertEquals("a", StringUtils.invertirCadena("a"));
     }
 
+    @Test
+    void testInvertirCadenaNull() {
+        assertThrows(IllegalArgumentException.class, () -> StringUtils.invertirCadena(null));
+    }
+
     // ========================================================================
     // TESTS: Encontrar primera ocurrencia de un carácter (sin usar indexOf)
     // ========================================================================
@@ -91,7 +96,8 @@ class StringUtilsTest {
     }
 
     @Test
-    void testEncontrarPrimeraOcurrenciaUltimoCaracter() {
+    void testEncontrarPrimeraOcurrenciaPrimeraO() {
+        // 'o' aparece en posición 1 (primera ocurrencia)
         assertEquals(1, StringUtils.encontrarPrimeraOcurrencia("codigo", 'o'));
     }
 }

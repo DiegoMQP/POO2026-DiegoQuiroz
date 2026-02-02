@@ -58,10 +58,14 @@ public class StringUtils {
     /**
      * Invierte una cadena sin usar el método reverse.
      * @param texto cadena a invertir
-     * @return cadena invertida
+     * @return cadena invertida, cadena vacía si el texto es null o vacío
+     * @throws IllegalArgumentException si texto es null
      */
     public static String invertirCadena(String texto) {
-        if (texto == null || texto.isEmpty()) {
+        if (texto == null) {
+            throw new IllegalArgumentException("El texto no puede ser null");
+        }
+        if (texto.isEmpty()) {
             return texto;
         }
 

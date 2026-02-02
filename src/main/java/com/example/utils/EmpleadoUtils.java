@@ -2,6 +2,7 @@ package com.example.utils;
 
 import com.example.model.Empleado;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -126,42 +127,38 @@ public class EmpleadoUtils {
 
     /**
      * Filtra empleados menores de 25 años.
-     * @param empleados lista de empleados
-     * @return lista de empleados menores de 25 años
+     * @param empleados lista de empleados (elementos null son ignorados)
+     * @return lista mutable de empleados menores de 25 años
      */
     public static List<Empleado> filtrarMenoresDe25(List<Empleado> empleados) {
-        if (empleados == null) {
-            return List.of();
+        if (empleados == null || empleados.isEmpty()) {
+            return new ArrayList<>();
         }
 
         return empleados.stream()
-                .filter(empleado -> empleado.getEdad() < 25)
+                .filter(empleado -> empleado != null && empleado.getEdad() < 25)
                 .collect(Collectors.toList());
     }
 
     /**
      * Cuenta cuántos empleados pertenecen al departamento de Sistemas.
-     * @param empleados lista de empleados
-     * @return cantidad de empleados en el departamento de Sistemas
+     * @param empleados lista de empleados (elementos null son ignorados)
+     * @return cantidad de empleados de Sistemas
      */
     public static int contarEmpleadosDeSistemas(List<Empleado> empleados) {
         if (empleados == null || empleados.isEmpty()) {
             return 0;
         }
 
-        int contador = 0;
-        for (Empleado empleado : empleados) {
-            if ("Sistemas".equalsIgnoreCase(empleado.getDepartamento())) {
-                contador++;
-            }
-        }
-
-        return contador;
+        return (int) empleados.stream()
+                .filter(emp -> emp != null && emp.getDepartamento() != null)
+                .filter(emp -> "Sistemas".equalsIgnoreCase(emp.getDepartamento()))
+                .count();
     }
 
     /**
      * Encuentra el empleado con mayor salario que tenga más de 30 años.
-     * @param empleados lista de empleados
+     * @param empleados lista de empleados (no debe contener elementos null)
      * @return empleado con mayor salario y más de 30 años, null si no hay empleados que cumplan la condición
      */
     public static Empleado empleadoConMayorSalarioMayorDe30(List<Empleado> empleados) {
@@ -169,17 +166,10 @@ public class EmpleadoUtils {
             return null;
         }
 
-        Empleado resultado = null;
-        double maxSalario = Double.MIN_VALUE;
-
-        for (Empleado empleado : empleados) {
-            if (empleado.getEdad() > 30 && empleado.getSalario() > maxSalario) {
-                maxSalario = empleado.getSalario();
-                resultado = empleado;
-            }
-        }
-
-        return resultado;
+        return empleados.stream()
+                .filter(emp -> emp != null && emp.getEdad() > 30)
+                .max((e1, e2) -> Double.compare(e1.getSalario(), e2.getSalario()))
+                .orElse(null);
     }
 
     /**
