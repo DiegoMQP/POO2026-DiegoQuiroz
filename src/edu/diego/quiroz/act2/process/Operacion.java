@@ -1,14 +1,20 @@
 package edu.diego.quiroz.act2.process;
 
 /**
- * Interfaz que define el contrato para las operaciones aritméticas
+ * Clase abstracta base para todas las operaciones matemáticas.
+ * Define la interfaz común que deben implementar todas las operaciones.
+ * 
+ * @author Diego Quiroz
+ * @version 1.0
  */
-public interface Operacion {
+public abstract class Operacion {
+    
     /**
-     * Realiza la operación aritmética con dos operandos
-     * @param operando1 Primer operando
-     * @param operando2 Segundo operando
+     * Aplica la operación matemática a dos operandos.
+     * 
+     * @param a Primer operando
+     * @param b Segundo operando
      * @return Resultado de la operación
      */
-    double realizarOperacion(double operando1, double operando2);
+    public abstract int apply(int a, int b);
 }

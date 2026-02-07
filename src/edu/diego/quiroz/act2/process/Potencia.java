@@ -1,13 +1,34 @@
 package edu.diego.quiroz.act2.process;
 
 /**
- * Clase que implementa la operación de potencia
- * Utiliza multiplicación repetida (que a su vez usa suma repetida)
+ * Clase que implementa la operación de potencia mediante multiplicación repetida.
+ * <p>
+ * No utiliza Math.pow(), en su lugar implementa la potenciación multiplicando
+ * repetidamente la base consigo misma tantas veces como indique el exponente.
+ * Utiliza la clase Multiplicacion para realizar los cálculos, lo que demuestra
+ * composición entre operaciones. Maneja exponentes negativos mediante división.
+ * </p>
+ *
+ * @author Diego Quiroz
+ * @version 1.0
+ * @since 2026-02-06
  */
-public class Potencia implements Operacion {
+public class Potencia extends Operacion {
     
+    /**
+     * Calcula la potencia de un número mediante multiplicación repetida.
+     * <p>
+     * Implementación que multiplica la base consigo misma 'exponente' veces.
+     * Utiliza instancias de Multiplicacion y Division para los cálculos.
+     * Maneja casos especiales como base 0, exponente 0, y exponentes negativos.
+     * </p>
+     *
+     * @param base la base de la potencia
+     * @param exponente el exponente al que se elevará la base
+     * @return el resultado de base ^ exponente
+     */
     @Override
-    public double realizarOperacion(double base, double exponente) {
+    public int apply(int base, int exponente) {
         // Casos especiales
         if (exponente == 0) {
             return 1;
@@ -25,28 +46,19 @@ public class Potencia implements Operacion {
         }
         
         // Potencia mediante multiplicación repetida
-        double resultado = 1;
-        int exp = (int) exponente;
+        int resultado = 1;
         
-        for (int i = 0; i < exp; i = i + 1) {
-            // Multiplicar resultado por base usando suma repetida
-            resultado = new Multiplicacion().realizarOperacion(resultado, base);
+        for (int i = 0; i < exponente; i = i + 1) {
+            // Multiplicar resultado por base usando la operación de multiplicación
+            resultado = new Multiplicacion().apply(resultado, base);
         }
         
         // Si el exponente era negativo, calculamos 1/resultado
         if (exponenteNegativo) {
             // 1/resultado usando división (que usa resta repetida)
-            resultado = new Division().realizarOperacion(1, resultado);
+            resultado = new Division().apply(1, resultado);
         }
 
         return resultado;
-    }
-    
-    /**
-     * Método estático para uso directo
-     */
-    public static double realizarOperacion(int base, int exponente) {
-        Potencia potencia = new Potencia();
-        return potencia.realizarOperacion((double)base, (double)exponente);
     }
 }

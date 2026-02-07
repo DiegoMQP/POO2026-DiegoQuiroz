@@ -1,13 +1,35 @@
 package edu.diego.quiroz.act2.process;
 
 /**
- * Clase que implementa la operación de logaritmo
- * Utiliza multiplicación repetida para contar cuántas veces hay que multiplicar la base
+ * Clase que implementa la operación de logaritmo mediante división repetida.
+ * <p>
+ * No utiliza Math.log(), en su lugar implementa el cálculo del logaritmo
+ * dividiendo repetidamente el operando por la base hasta llegar a un valor
+ * menor que la base. El número de divisiones realizadas es el resultado.
+ * Utiliza la clase Division para realizar los cálculos.
+ * </p>
+ *
+ * @author Diego Quiroz
+ * @version 1.0
+ * @since 2026-02-06
  */
-public class Logaritmo implements Operacion {
+public class Logaritmo extends Operacion {
     
+    /**
+     * Calcula el logaritmo entero de un número en una base dada.
+     * <p>
+     * Implementación que cuenta cuántas veces se puede dividir el operando
+     * por la base hasta que el resultado sea menor que la base. Utiliza
+     * instancias de Division para realizar los cálculos.
+     * </p>
+     *
+     * @param base la base del logaritmo (debe ser mayor que 0 y diferente de 1)
+     * @param operando el número del cual se calculará el logaritmo (debe ser mayor que 0)
+     * @return el logaritmo entero de operando en base 'base'
+     * @throws ArithmeticException si la base es menor o igual a 0, igual a 1, o si el operando es menor o igual a 0
+     */
     @Override
-    public double realizarOperacion(double base, double operando) {
+    public int apply(int base, int operando) {
         if (base <= 0 || base == 1) {
             throw new ArithmeticException("La base debe ser mayor que 0 y diferente de 1");
         }
@@ -22,14 +44,13 @@ public class Logaritmo implements Operacion {
         }
         
         // Contar cuántas veces hay que dividir el operando por la base para llegar a 1
-        double resultado = 0;
-        double valor = operando;
-        double epsilon = 0.0000001;
+        int resultado = 0;
+        int valor = operando;
         
-        // Para base > 1: dividir hasta llegar a 1
+        // Para base > 1: dividir hasta llegar a valor < base
         if (base > 1) {
-            while (valor > 1 + epsilon) {
-                valor = new Division().realizarOperacion(valor, base);
+            while (valor >= base) {
+                valor = new Division().apply(valor, base);
                 resultado = resultado + 1;
                 
                 // Evitar bucle infinito
@@ -37,28 +58,8 @@ public class Logaritmo implements Operacion {
                     break;
                 }
             }
-        } 
-        // Para base < 1: multiplicar (o dividir por 1/base) hasta llegar a 1
-        else {
-            while (valor < 1 - epsilon) {
-                valor = new Division().realizarOperacion(valor, base);
-                resultado = resultado + 1;
-                
-                if (resultado > 10000) {
-                    break;
-                }
-            }
-            resultado = 0 - resultado; // Resultado negativo para base < 1
         }
         
         return resultado;
-    }
-    
-    /**
-     * Método estático para uso directo
-     */
-    public static double realizarOperacion(int base, int operando) {
-        Logaritmo logaritmo = new Logaritmo();
-        return logaritmo.realizarOperacion((double)base, (double)operando);
     }
 }

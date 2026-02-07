@@ -1,2 +1,22 @@
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# VS Code
+.vscode/
 /src/edu/diego/quiroz/act2/.vscode/settings.json
-/.idea/vcs.xml
+
+# Archivos compilados de Java
+*.class
+out/
+target/
+build/
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log

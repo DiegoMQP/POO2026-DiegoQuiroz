@@ -1,109 +1,54 @@
 package edu.diego.quiroz.act2.process;
 
 /**
- * Clase que implementa la operación de división
- * Utiliza resta repetida para calcular el resultado
+ * Clase que implementa la operación de división entera mediante resta repetida.
+ * <p>
+ * No utiliza el operador de división nativo (/), en su lugar implementa
+ * la división restando repetidamente el divisor del dividendo hasta que
+ * el residuo sea menor que el divisor. Maneja correctamente números negativos
+ * y valida la división por cero.
+ * </p>
+ *
+ * @author Diego Quiroz
+ * @version 1.0
+ * @since 2026-02-06
  */
-public class Division implements Operacion {
-    
-    @Override
-    public double realizarOperacion(double operando1, double operando2) {
-        if (operando2 == 0) {
-            throw new ArithmeticException("División por cero no permitida");
-        }
-        
-        // Determinar si el resultado será negativo
-        boolean negativo = false;
-        if (operando1 < 0) {
-            operando1 = 0 - operando1;
-            negativo = !negativo;
-        }
-        if (operando2 < 0) {
-            operando2 = 0 - operando2;
-            negativo = !negativo;
-        }
-        
-        // División por resta repetida
-        double cociente = 0;
-        double dividendo = operando1;
-        double epsilon = 0.0000001; // Tolerancia para comparaciones de punto flotante
-        
-        // Parte entera: contar cuántas veces cabe el divisor en el dividendo
-        while (dividendo >= operando2 - epsilon) {
-            dividendo = dividendo - operando2;
-            cociente = cociente + 1;
-        }
-        
-        // Parte decimal: aproximación con precisión de 6 decimales
-        if (dividendo > epsilon) {
-            // Escalar el resto multiplicando por 10 (usando suma repetida)
-            double divisorEscalado = operando2;
-            for (int escala = 0; escala < 6; escala = escala + 1) {
-                double dividendoEscalado = dividendo;
-                
-                // Multiplicar por 10 usando suma
-                double temp = dividendoEscalado;
-                for (int i = 0; i < 9; i = i + 1) {
-                    dividendoEscalado = dividendoEscalado + temp;
-                }
-                
-                double digitoDecimal = 0;
-                while (dividendoEscalado >= divisorEscalado - epsilon) {
-                    dividendoEscalado = dividendoEscalado - divisorEscalado;
-                    digitoDecimal = digitoDecimal + 1;
-                }
-                
-                // Dividir digitoDecimal entre 10^(escala+1) y sumar al cociente
-                double divisor = 10;
-                for (int i = 0; i < escala; i = i + 1) {
-                    double temp2 = divisor;
-                    for (int j = 0; j < 9; j = j + 1) {
-                        divisor = divisor + temp2;
-                    }
-                }
-                
-                // Sumar la contribución decimal (dividir digitoDecimal entre 10^(escala+1))
-                double contribucion = digitoDecimal;
-                while (contribucion >= divisor && contribucion > epsilon) {
-                    contribucion = contribucion - divisor;
-                }
-                cociente = cociente + contribucion;
-                
-                dividendo = dividendoEscalado;
-            }
-        }
-        
-        // Aplicar signo si es necesario
-        if (negativo) {
-            cociente = 0 - cociente;
-        }
-        
-        return cociente;
-    }
+public class Division extends Operacion {
     
     /**
-     * Método estático para uso directo con enteros
+     * Divide dos números enteros usando resta repetida.
+     * <p>
+     * Implementación que resta el divisor del dividendo repetidamente,
+     * contando cuántas veces se puede realizar la operación antes de que
+     * el residuo sea menor que el divisor.
+     * </p>
+     *
+     * @param a el dividendo
+     * @param b el divisor
+     * @return el cociente entero de a / b
+     * @throws ArithmeticException si b es igual a cero
      */
-    public static int realizarOperacion(int operando1, int operando2) {
-        if (operando2 == 0) {
+    @Override
+    public int apply(int a, int b) {
+        if (b == 0) {
             throw new ArithmeticException("División por cero no permitida");
         }
         
         boolean negativo = false;
-        if (operando1 < 0) {
-            operando1 = 0 - operando1;
+        if (a < 0) {
+            a = 0 - a;
             negativo = !negativo;
         }
-        if (operando2 < 0) {
-            operando2 = 0 - operando2;
+        if (b < 0) {
+            b = 0 - b;
             negativo = !negativo;
         }
         
         int cociente = 0;
-        int dividendo = operando1;
+        int dividendo = a;
         
-        while (dividendo >= operando2) {
-            dividendo = dividendo - operando2;
+        while (dividendo >= b) {
+            dividendo = dividendo - b;
             cociente = cociente + 1;
         }
         
